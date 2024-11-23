@@ -7,6 +7,7 @@ import iziToast from "izitoast";
 // Додатковий імпорт стилів
 import "izitoast/dist/css/iziToast.min.css";
 
+import errorImage from '../img/error.png';
 
 //deactive button-Start
 const inputTimer = document.querySelector(".input-timer");
@@ -35,7 +36,7 @@ const options = {
         if (unixNowTime >= userSelectedDate.getTime()) {
             iziToast.show({
                 title: '',
-                iconText: '',
+                iconUrl: `${errorImage}`,
                 backgroundColor: 'red',
                 messageColor: 'white',
                 message: 'Please choose a date in the future',

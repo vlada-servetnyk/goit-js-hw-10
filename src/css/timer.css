@@ -50,8 +50,9 @@
   height: 24px;
   margin-bottom: 32px;
 }
-.input-timer:hover {
+.input-timer:hover, .input-timer:focus {
 border: 1px solid #4e75ff;
+outline: none;
 }
 
 .input-timer:disabled {
