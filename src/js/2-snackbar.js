@@ -5,42 +5,48 @@ import "izitoast/dist/css/iziToast.min.css";
 
 const form = document.querySelector(".form");
 const inputMs = document.querySelector(".form-input-ms");
-const btnCreate = document.querySelector(".form-btn");
-const radioFulfilled = document.querySelector(".fulfilled");
-const radioRejected = document.querySelector(".rejected");
 
-
-
-
-const isSuccess = true;
-
-const promise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    if (isSuccess) {
-      resolve("Success! Value passed to resolve function");
-    } else {
-      reject("Error! Error passed to reject function");
-    }
-  }, 2000);
-});
-
-
-const delay = null;
-function fooInput() {
-    delay = inputMs.value;
-}
-
-function handleSubmit() {
-    preventDefault();
+function handleSubmit(event) {
+    event.preventDefault();
     
+    const delay = event.target.elements.delay.value;
+    const state = event.target.elements.state.value
+
     const promise = new Promise((resolve, reject) => {
-        setTimeout(() => { }, delay)
+        resolve({delay: `${delay}`, state: `${state}`});
+        reject ({delay: `${delay}`, state: `${state}`})
     })
+    
+    setTimeout(() => {
+        promise
+            .then(item => {
+                if (item.state === "fulfilled") {
+                    iziToast.show({
+                        title: '',
+                        backgroundColor: 'green',
+                        messageColor: 'white',
+                        message: `✅ Fulfilled promise in ${item.delay}ms`,
+                        position: 'topRight',
+                    })
+                } else {
+                    iziToast.show({
+                        title: '',
+                        backgroundColor: 'red',
+                        messageColor: 'white',
+                        message: `❌ Rejected promise in ${item.delay}ms`,
+                        position: 'topRight',
+                    }
+                    )
+                }
+            })
+
+      
+    }, delay);
+
+    inputMs.value = "";
 };
 
 
 
-
-inputMs.addEventListener("input", fooInput)
 form.addEventListener("submit", handleSubmit)
 

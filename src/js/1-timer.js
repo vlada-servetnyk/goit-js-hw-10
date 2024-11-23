@@ -18,7 +18,8 @@ const minutesSpan = document.querySelector("span[data-minutes]");
 const secondsSpan = document.querySelector("span[data-seconds]");
 
 //відключення кнопки старт
-btnTimer.setAttribute("disabled", "");
+btnTimer.disabled = true;
+// btnTimer.setAttribute("disabled", "");
 
 let userSelectedDate = null;
 let intervalId = null;
@@ -42,10 +43,9 @@ const options = {
                 message: 'Please choose a date in the future',
                 position: 'topRight',
             })
-            btnTimer.setAttribute("disabled", "");
+            btnTimer.disabled = true;
         } else {
-            btnTimer.removeAttribute("disabled");
-            
+            btnTimer.disabled = false;
         }   
   },
 };
@@ -90,8 +90,8 @@ function handleClick() {
     clearInterval(intervalId); 
     };
 
-    inputTimer.setAttribute("disabled", "");
-    btnTimer.setAttribute("disabled", "");
+    inputTimer.disabled = true;
+    btnTimer.disabled = true;
     const targetTime = userSelectedDate.getTime();
 
     intervalId = setInterval(() => {
@@ -101,7 +101,7 @@ function handleClick() {
         if (timeRemaining <= 0) {
             clearInterval(intervalId);
             displayTimer(0);
-            inputTimer.removeAttribute("disabled");
+            inputTimer.disabled = false;
             return;
         }
 
