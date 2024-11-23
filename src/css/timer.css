@@ -41,13 +41,22 @@
 }
 
 .input-timer {
+  border: 1px solid #000;
+  border-radius: 4px;
   letter-spacing: 0.04em;
   color: #2e2f42;
   padding: 8px 16px;
-  border-radius: 4px;
   width: 240px;
   height: 24px;
   margin-bottom: 32px;
+}
+.input-timer:hover {
+border: 1px solid #4e75ff;
+}
+
+.input-timer:disabled {
+  background-color: #fafafa;
+  border: 1px solid #808080;
 }
 
 .btn-timer {
@@ -60,6 +69,12 @@
   color: #fff;
 }
 
+.btn-timer:disabled:hover {
+  background-color: #cfcfcf;
+  color: #989898;
+  cursor: not-allowed;
+}
+
 .btn-timer:disabled {
   background-color: #cfcfcf;
   color: #989898;
@@ -69,17 +84,3 @@
   background-color: #6c8cff;
   color: #fff;
 }
-
-
-/* Styles for Tablet devices
-@media only screen and (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-/* Styles for Desktop devices */
-/* @media only screen and (min-width: 1200px) {
-  .container {
-    max-width: 1200px;
-  }
-}  */

@@ -87,8 +87,9 @@ function displayTimer(ms) {
 function handleClick() {
     if (intervalId !== null) {
     clearInterval(intervalId); 
-  }
+    };
 
+    inputTimer.setAttribute("disabled", "");
     btnTimer.setAttribute("disabled", "");
     const targetTime = userSelectedDate.getTime();
 
@@ -99,6 +100,7 @@ function handleClick() {
         if (timeRemaining <= 0) {
             clearInterval(intervalId);
             displayTimer(0);
+            inputTimer.removeAttribute("disabled");
             return;
         }
 
